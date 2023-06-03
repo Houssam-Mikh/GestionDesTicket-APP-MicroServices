@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id : r1
+          uri : lb://ticket/tickets
+          predicates:
+            - Path=/tickets/**
+        - id : r2
+          uri: lb://student/students
+          predicates:
+            - Path=/students/**
+        - id : r3
+          uri: lb://ADMIN/admins
+          predicates:
+            - Path=/admins/**
+        - id: r4
+          uri: lb://SURVEILLANT/surveillants
+          predicates:
+            - Path=/surveillants/**
+  application:
+    name: API-GATEWAY
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8084
